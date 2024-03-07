@@ -338,7 +338,7 @@ $(document).ready(function(){
         }, "json");
     });
 
-    $("#calles").keypress(function(event){
+    $("#calles").keyup(function(event){
         if(event.which == 13){ // 13 es el código de la tecla Enter
             $("#ubicar").click();
         }
