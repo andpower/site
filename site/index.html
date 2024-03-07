@@ -34,7 +34,7 @@
             align-items: center;
             text-align: center;
             display: flex;
-            width: auto;
+            width: 100%;
             height: 10vh;
             position: fixed;
             top: 0;
@@ -70,7 +70,7 @@
 
         .cuerpo {
             margin-top: 10vh;
-            height: 90vh;
+            height: calc(90vh - 10vh); /* Ajustado para restar la altura del contenedor_titulo */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,17 +86,10 @@
             text-align: center;
             display: flex;   /* Utiliza flexbox para alinear los elementos */
             align-items: center;  /* Centra los elementos verticalmente */
-            justify-content: center;   /* Espaciado horizontal */
+            justify-content: space-between;
             background: rgba(255, 255, 255, 0.8);
-            /* Fondo ligeramente transparente */
-            border-radius: 8px;
-            /* Bordes redondeados para el área de ingresos */
+            border-radius: 8px; */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            /* Sombra suave para dar profundidad */
-            gap: 40px; /* Espacio entre el campo de texto y el botón */
-            /* Ajusta el ancho máximo y el centrado horizontal si es necesario */
-
-
         }
 
         .area_ingresos>div {
@@ -108,11 +101,8 @@
             white-space: nowrap;
             /* Evita que el texto del botón se divida en varias líneas */
             padding: 10px 20px;
-            /* Añade un poco más de padding al botón */
 
-
-            /* Estilos para el input para que coincida con el diseño */
-            #direccion {
+        #direccion {
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 4px;
@@ -126,41 +116,36 @@
 
 
 @media screen and (max-width: 767px) {
-    .contenedor_titulo {
-        padding: 0; /* Elimina el padding para evitar espaciado extra */
-        flex-direction: column; /* Apila los elementos verticalmente */
-    }
+            .contenedor_titulo {
+                padding: 0;
+                flex-direction: column;
+            }
 
-    .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
-        width: 100%; /* Asegura que los escudos y el texto ocupen el ancho completo */
-        margin-bottom: 0.5rem; /* Añade un margen para separar los elementos */
-    }
+            .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
 
-    .contenedor_item_titulo.center {
-        font-size: 10px; /* Ajusta el tamaño de la fuente para que sea legible en móviles */
-    }
+            .contenedor_item_titulo.center {
+                font-size: 16px; /* Tamaño más grande para legibilidad */
+            }
 
-    .area_ingresos {
-        width: calc(100% - 20px); /* Ajusta el ancho para tener en cuenta el padding */
-        padding: 10px; /* Añade padding para evitar que los elementos toquen los bordes */
-        flex-direction: column; /* Apila los elementos verticalmente */
-        gap: 10px; /* Espacio entre los elementos */
-    }
+            .area_ingresos {
+                width: calc(100% - 20px);
+                padding: 10px;
+                flex-direction: column;
+                gap: 10px;
+            }
 
-    #direccion, #ubicar {
-        width: 100%; /* Asegura que el campo de texto y el botón ocupen el ancho completo */
-    }
+            #direccion, #ubicar {
+                width: 100%;
+                margin: 5px 0;
+            }
 
-    #ubicar {
-        order: 2; /* Coloca el botón debajo del campo de texto */
-        margin-top: 10px; /* Añade un margen superior para separarlo del campo de texto */
-    }
-
-    #map {
-        margin-top: 20px; /* Añade un margen superior para separarlo de los elementos anteriores */
-        height: calc(100vh - (altura de otros elementos + margen/padding adicional)); /* Ajusta la altura */
-    }
-}
+            #map {
+                height: calc(100vh - 20vh); /* Ajustado para el nuevo layout */
+            }
+        }
 
 .polygon-label .etiqueta {
     font-size: 12px;
