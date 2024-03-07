@@ -126,50 +126,41 @@
 
 
 @media screen and (max-width: 767px) {
-            .contenedor_titulo {
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-                flex-direction: column; 
-				top: 0;
+    .contenedor_titulo {
+        flex-direction: column;
+        padding: 10px 0; /* Aumenta el padding superior e inferior */
+    }
 
-            }
+    .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
+        width: 90%; /* Reduce el ancho para dispositivos móviles */
+        margin: 10px auto; /* Añade margen arriba y abajo y centra horizontalmente */
+    }
 
-            .contenedor_item_titulo {
-                flex: 0; /* Las columnas extremas no ocupan espacio */
-                display: none;            
-				}
-			.contenedor_item_titulo.center {
-                flex: 1; 
-                display: block;        
-				font-size: 24px;
-				}
-		}
-		.cuerpo {
-		
-			margin-top: 10vh; 
-			margin-bottom: 15px;
-			height: 90vh; /* Ocupa el 90% del alto total de la ventana */
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center; 
-		}
-		.area_ingresos{
-				padding: 8px;
-				margin-bottom: 10px;
-				box-sizing: border-box;
-				text-align:left;
-		}
-		label{
-			width:60px;
-		}
-		
-		.polygon-label .etiqueta {
-			  font-size: 12px;
-			  color: blue;
-			  font-weight: 900;
-		}
+    .contenedor_item_titulo.center {
+        font-size: 18px; /* Reduce el tamaño de la fuente para el título en dispositivos móviles */
+    }
+
+    .area_ingresos {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        gap: 10px; /* Añade espacio entre los campos */
+        width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
+    }
+
+    #direccion, #ubicar {
+        width: 100%; /* Hace que el campo de texto y el botón ocupen el ancho completo */
+        margin: 5px 0; /* Elimina los márgenes laterales */
+    }
+
+    #map {
+        height: calc(100vh - 20vh); /* Ajusta la altura del mapa considerando otros elementos y padding */
+    }
+}
+
+.polygon-label .etiqueta {
+    font-size: 12px;
+    color: blue;
+    font-weight: 900;
+}
 		
 		
     </style>
