@@ -116,31 +116,45 @@
 
 
 @media screen and (max-width: 767px) {
-            .contenedor_titulo {
-                padding: 0;
-                flex-direction: column;
-            }
+    /* Ajustes para la barra de título */
+    .contenedor_titulo {
+        flex-direction: column;
+        padding: 5px 0; /* Reduce el padding superior e inferior */
+        align-items: center;
+        justify-content: center;
+        height: auto; /* Altura automática para adaptarse al contenido */
+    }
 
-            .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
+    /* Ajustes para los elementos del título */
+    .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
+        margin: 5px auto; /* Menos margen para más espacio */
+        width: auto; /* Ancho automático para adaptarse al contenido */
+        max-width: 90%; /* Evita que sea demasiado grande */
+        height: auto; /* Altura automática para mantener la proporción */
+    }
 
-            .contenedor_item_titulo.center {
-                font-size: 16px; /* Tamaño más grande para legibilidad */
-            }
+    .contenedor_item_titulo.center {
+        font-size: 16px; /* Fuente más grande para mejor legibilidad */
+        margin: 5px 0; /* Espaciado vertical para separar del logo */
+    }
 
-            .area_ingresos {
-                width: calc(100% - 20px);
-                padding: 10px;
-                flex-direction: column;
-                gap: 10px;
-            }
+    /* Ajustes para la zona de entrada */
+    .area_ingresos {
+        flex-direction: column; /* Elementos en columna */
+        gap: 5px; /* Menos espacio entre elementos */
+        padding: 5px; /* Menos padding para aprovechar el espacio */
+        width: 95%; /* Más ancho para maximizar el espacio disponible */
+        max-width: none; /* Sin restricción de ancho máximo */
+    }
 
-            #direccion, #ubicar {
-                width: 100%;
-                margin: 5px 0;
-            }
+    .area_ingresos > div {
+        width: 100%; /* Los hijos ocupan todo el ancho disponible */
+    }
+
+    #ubicar {
+        width: auto; /* Ancho automático */
+        margin-top: 5px; /* Margen superior para no pegarse al input */
+    }
 
             #map {
                 height: calc(100vh - 20vh); /* Ajustado para el nuevo layout */
