@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,21 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    
+
     <title>Autoridades por Comisaria Vecinal</title>
     <style>
         #map {
-    width: calc(90% - 2rem); /* Ajusta el ancho para permitir el padding */
-    height: calc(100vh - 10vh - 2rem); /* Ajusta la altura para permitir el padding y la barra de título */
-    margin: 1rem; /* Añade un margen alrededor del mapa */
-    border-radius: 5px; /* Bordes redondeados para el mapa */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada para el mapa */
-}
+            width: calc(97% - 2rem);
+            /* Ajusta el ancho para permitir el padding */
+            height: calc(100vh - 10vh - 2rem);
+            /* Ajusta la altura para permitir el padding y la barra de título */
+            margin: 1rem;
+            /* Añade un margen alrededor del mapa */
+            border-radius: 5px;
+            /* Bordes redondeados para el mapa */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Sombra más pronunciada para el mapa */
+        }
 
         body {
             text-align: center;
@@ -28,21 +34,24 @@
             overflow: hidden;
         }
 
-.contenedor_titulo {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    width: auto;
-    height: 10vh;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la barra del título */
-    border-bottom: 1px solid #ccc; /* Borde sutil en la parte inferior */
-    width: auto; /* Corregido de 'auto%' a '100%' */
-	}
+        .contenedor_titulo {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            width: auto;
+            height: 10vh;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Sombra para la barra del título */
+            border-bottom: 1px solid #ccc;
+            /* Borde sutil en la parte inferior */
+            width: auto;
+            /* Corregido de 'auto%' a '100%' */
+        }
 
         .contenedor_item_titulo {
             flex: 1;
@@ -50,31 +59,39 @@
         }
 
         .contenedor_item_titulo.center {
-    flex: 8;
-    font-size: 30px;
-    background: rgba(255, 255, 255, 0.8); /* Ajusta el fondo si es necesario */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad al título */
-    margin-bottom: 0.5rem; /* Añade un margen inferior para separar del resto de elementos */
-    }
+            flex: 8;
+            font-size: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            /* Ajusta el fondo si es necesario */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Sombra para dar profundidad al título */
+            margin-bottom: 0.5rem;
+            /* Añade un margen inferior para separar del resto de elementos */
+        }
 
         .escudos {
-    max-height: 45%; /* Ajustar según sea necesario */
-    max-width: 45%; /* Ajustar según sea necesario */
-    height: 100%;
-    width: auto;
-    overflow: hidden;
-    border: 3px solid #ddd; /* Borde sutil */
-    border-radius: 80%; /* Hace los escudos redondos */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
-    }
- 
+            max-height: 45%;
+            /* Ajustar según sea necesario */
+            max-width: 45%;
+            /* Ajustar según sea necesario */
+            height: 100%;
+            width: auto;
+            overflow: hidden;
+            border: 3px solid #ddd;
+            /* Borde sutil */
+            border-radius: 80%;
+            /* Hace los escudos redondos */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* Sombra para dar profundidad */
+        }
+
         .cuerpo {
-    margin-top: 10vh;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+            margin-top: 10vh;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         @media screen and (max-width: 600px) {
@@ -84,65 +101,86 @@
                 text-align: center;
                 flex-direction: column;
                 top: 0;
-		padding: 0.5rem;    
+                padding: 0.5rem;
             }
 
             .contenedor_item_titulo {
-                background: rgba(255, 255, 255, 0.95); /* Hace la barra de título ligeramente transparente */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
+                background: rgba(255, 255, 255, 0.95);
+                /* Hace la barra de título ligeramente transparente */
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                /* Sombra sutil */
+            }
 
             .contenedor_item_titulo.center {
                 flex: 1;
                 display: block;
                 font-size: 24px;
-		margin-bottom: 0.5rem; /* Añade un margen inferior para separar del resto de elementos */    
+                margin-bottom: 0.5rem;
+                /* Añade un margen inferior para separar del resto de elementos */
             }
         }
 
         .area_ingresos {
-    padding: 10px; /* Aumenta el padding para más espacio alrededor del formulario */
-    margin: 0 auto; /* Centra el área de ingresos horizontalmente y agrega margen */
-    width: 80%; /* Define un ancho para que no sea 100% de la pantalla */
-    max-width: 500px; /* Establece un ancho máximo para que no sea demasiado grande */
-    box-sizing: border-box;
-    text-align: center;
-    display: flex; /* Utiliza flexbox para alinear los elementos */
-    align-items: center; /* Centra los elementos verticalmente */
-    justify-content: space-around; /* Espaciado horizontal */
-    background: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente */
-    border-radius: 8px; /* Bordes redondeados para el área de ingresos */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
-    gap: 40px; /* Espacio entre el campo de texto y el botón */
-    /* Ajusta el ancho máximo y el centrado horizontal si es necesario */
-		
-		
-}
-
-.area_ingresos > div {
-    flex: 1; /* Los divs internos toman el mismo espacio */
-}
-
-#ubicar {
-    white-space: nowrap; /* Evita que el texto del botón se divida en varias líneas */
-    padding: 10px 20px; /* Añade un poco más de padding al botón */
-
-
-/* Estilos para el input para que coincida con el diseño */
-#direccion {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: calc(100% - 22px); /* Ajuste para padding y bordes */
-    flex: 1; /* Permite que el campo de texto ocupe el espacio disponible */
-    margin-right: 10px; /* Añade margen a la derecha del campo de texto */
-}
+            padding: 10px;
+            /* Aumenta el padding para más espacio alrededor del formulario */
+            margin: 0 auto;
+            /* Centra el área de ingresos horizontalmente y agrega margen */
+            width: 80%;
+            /* Define un ancho para que no sea 100% de la pantalla */
+            max-width: 500px;
+            /* Establece un ancho máximo para que no sea demasiado grande */
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            /* Utiliza flexbox para alinear los elementos */
+            align-items: center;
+            /* Centra los elementos verticalmente */
+            justify-content: space-around;
+            /* Espaciado horizontal */
+            background: rgba(255, 255, 255, 0.8);
+            /* Fondo ligeramente transparente */
+            border-radius: 8px;
+            /* Bordes redondeados para el área de ingresos */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* Sombra suave para dar profundidad */
+            gap: 40px;
+            /* Espacio entre el campo de texto y el botón */
+            /* Ajusta el ancho máximo y el centrado horizontal si es necesario */
 
 
-@media (max-width: 600px) {
-	
-	.area_ingresos {
-        flex-direction: column; /* Los elementos
+        }
+
+        .area_ingresos>div {
+            flex: 1;
+            /* Los divs internos toman el mismo espacio */
+        }
+
+        #ubicar {
+            white-space: nowrap;
+            /* Evita que el texto del botón se divida en varias líneas */
+            padding: 10px 20px;
+            /* Añade un poco más de padding al botón */
+
+
+            /* Estilos para el input para que coincida con el diseño */
+            #direccion {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: calc(100% - 22px);
+                /* Ajuste para padding y bordes */
+                flex: 1;
+                /* Permite que el campo de texto ocupe el espacio disponible */
+                margin-right: 10px;
+                /* Añade margen a la derecha del campo de texto */
+            }
+
+
+            @media (max-width: 600px) {
+
+                .area_ingresos {
+                    flex-direction: column;
+                    /* Los elementos
 
         label {
             width: 60px;
@@ -155,244 +193,244 @@
         }
 		
 		
-
     </style>
 
 
 </head>
+
 <body>
 
-	<div class = "contenedor_titulo">
-		<div class = "contenedor_item_titulo">    <img src="./ciudad.gif" class="escudos">
-		</div>
-		<div class = "contenedor_item_titulo center">División Análisis Estadistico e Investigación Criminal
-		</div>
-		<div class = "contenedor_item_titulo"><img src="./subjefatura.gif" class="escudos">
-		</div>
-	</div>
-
-	<div class="cuerpo">
-
-		<div id="area_ingresos" class="area_ingresos">
-    <div>
-        <label for="direccion">Dirección</label>
-        <input type="text" id="direccion" name="direccion">
+    <div class="contenedor_titulo">
+        <div class="contenedor_item_titulo"> <img src="./ciudad.gif" class="escudos">
+        </div>
+        <div class="contenedor_item_titulo center">División Análisis Estadistico e Investigación Criminal
+        </div>
+        <div class="contenedor_item_titulo"><img src="./subjefatura.gif" class="escudos">
+        </div>
     </div>
-    <div>
-        <input type="button" id="ubicar" name="ubicar" value="Ubicar">
+
+    <div class="cuerpo">
+
+        <div id="area_ingresos" class="area_ingresos">
+            <div>
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion">
+            </div>
+            <div>
+                <input type="button" id="ubicar" name="ubicar" value="Ubicar">
+            </div>
+        </div>
+        <div id="map">
+
+        </div>
     </div>
-</div>
-		<div id="map">
 
-		</div>
-	</div>
 
-	
-	
+
     <script src="jefes.js">
-	
-	</script>
-	<script src="poligonos.js">
-	
- 
 
-	</script>
+    </script>
+    <script src="poligonos.js">
 
 
-<script>
-	class jefe{
-		constructor(dependencia, jerarquia ,lp,apellido, nombre, poc, tel_part){
-		
-			this.dependencia = dependencia;
-			this.jerarquia = jerarquia;
-			this.lp = lp;
-			this.apellido = apellido;
-			this.nombre = nombre;
-			this.poc = poc;
-			this.tel_part = tel_part;
-		}
-		
-		imprime(){
-			return "Dependencia: "+this.dependencia+"<br>Jefe: "+ this.jerarquia +" "+ this.lp +"<br>"+ this.apellido+" "+ this.nombre+" "+ "<a href='tel:+"+this.poc+"'><br>Poc: "+this.poc+"</a><br>"+"<a href='tel:+"+this.tel_part+"'>Tel. Particular: "+this.tel_part+"</a><br>";
-		}
-	}
-</script>
+
+    </script>
+
+
+    <script>
+        class jefe {
+            constructor(dependencia, jerarquia, lp, apellido, nombre, poc, tel_part) {
+
+                this.dependencia = dependencia;
+                this.jerarquia = jerarquia;
+                this.lp = lp;
+                this.apellido = apellido;
+                this.nombre = nombre;
+                this.poc = poc;
+                this.tel_part = tel_part;
+            }
+
+            imprime() {
+                return "Dependencia: " + this.dependencia + "<br>Jefe: " + this.jerarquia + " " + this.lp + "<br>" + this.apellido + " " + this.nombre + " " + "<a href='tel:+" + this.poc + "'><br>Poc: " + this.poc + "</a><br>" + "<a href='tel:+" + this.tel_part + "'>Tel. Particular: " + this.tel_part + "</a><br>";
+            }
+        }
+    </script>
 
     <script>
 
 
 
         var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-            var map = L.map('map').setView([-34.61510469805309, -58.453305816757414], 12).addLayer(osm);
-			
-
-            poligonos.forEach(polygon => {
-			
-                      
-											for (var i = 0; i < jefes.length; i++) {
-											  if (jefes[i].DEPENDENCIA2 === polygon.properties["c-vecinal"]) {
-												
-												registro = (jefes[i]);
-												//console.log(registro);
-												var texto = polygon.properties["c-vecinal"]+"<br>"+polygon.properties["c-comunal"];
-												var comisaria_vecinal = polygon.properties["c-vecinal"]+"<br>";
-
-												var jefe_area_ = new jefe(jefes[i].AREAA,  
-                                                  jefes[i].JERARQUIAA ,
-                                                  jefes[i].LPA,
-                                                  jefes[i].APELLIDOA, 
-                                                  jefes[i].NOMBRESA, 
-                                                  jefes[i].POCA, 
-                                                  jefes[i].PARTICULARA);
+            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib });
+        var map = L.map('map').setView([-34.61510469805309, -58.453305816757414], 12).addLayer(osm);
 
 
-												var jefe_comuna_ = new jefe(jefes[i].COMUNAC,  
-                                                    jefes[i].JERARQUIAC ,
-                                                    jefes[i].LPC,
-                                                    jefes[i].APELLIDOC, 
-                                                    jefes[i].NOMBRESC, 
-                                                    jefes[i].POCC, 
-                                                    jefes[i].PARTICULARC);
+        poligonos.forEach(polygon => {
 
 
-												var jefe_comisaria_ = new jefe(jefes[i].DEPENDENCIA1,  
-                                                      jefes[i].JERARQUIA1 ,
-                                                      jefes[i].LP1,
-                                                      jefes[i].APELLIDO1, 
-                                                      jefes[i].NOMBRES1, 
-                                                      jefes[i].POC1, 
-                                                      jefes[i].PARTICULAR1);
+            for (var i = 0; i < jefes.length; i++) {
+                if (jefes[i].DEPENDENCIA2 === polygon.properties["c-vecinal"]) {
 
-                        var jefe2_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,  
-                                                      jefes[i].JERARQUIA2 ,
-                                                      jefes[i].LP2,
-                                                      jefes[i].APELLIDO2, 
-                                                      jefes[i].NOMBRES2, 
-                                                      jefes[i].POC2, 
-                                                      jefes[i].PARTICULAR2);
+                    registro = (jefes[i]);
+                    //console.log(registro);
+                    var texto = polygon.properties["c-vecinal"] + "<br>" + polygon.properties["c-comunal"];
+                    var comisaria_vecinal = polygon.properties["c-vecinal"] + "<br>";
 
-												
-												var jefe_area = jefe_area_.imprime();
-												var jefe_comuna = jefe_comuna_.imprime();
-												var jefe_comisaria = jefe_comisaria_.imprime();
-                        var jefe2_comisaria = jefe2_comisaria_.imprime();
-											  }
-											}
-			
-											
-											var texto = jefe_area+"<br>"+jefe_comuna+"<br>"+jefe_comisaria+"<br>"+jefe2_comisaria;
-                       poly = L.geoJSON(polygon).addTo(map).bindPopup(texto);
-					  
-					  
-					  
-					  /*
-					  //para agregar cartelito de dependencia
-					   //agregar titulo de comisaria al poligono
-						  var text = L.tooltip({
-							permanent: true, 
-							direction: 'center'    
-						  }).setContent(polygon.properties["c-vecinal"]);
-						  
-						  text.setLatLng(poly.getBounds().getCenter());
-						  map.addLayer(text);  
-					  
-					  
-					  */
-					  //para agregar como texto en fondo
-					  	depen_ = polygon.properties["c-vecinal"].replace('CV-', '');
-						
-						var divIcon = L.divIcon({
-							className: 'polygon-label', 
-							html: '<span class="etiqueta">'+depen_+'</span>'
-						  });
+                    var jefe_area_ = new jefe(jefes[i].AREAA,
+                        jefes[i].JERARQUIAA,
+                        jefes[i].LPA,
+                        jefes[i].APELLIDOA,
+                        jefes[i].NOMBRESA,
+                        jefes[i].POCA,
+                        jefes[i].PARTICULARA);
 
-						  // Añadir marcador en el centro
-						
-						b13 = [-34.54472212317285, -58.459886230124965];
-						c04 = [-34.63193387606371, -58.36326438359982];
-						b10 = [-34.62515027067575, -58.52069930995364];
-						a13 = [-34.5531270648513, -58.44728346769376];
-						switch(polygon.properties["c-vecinal"].replace('CV-', '')){
-							case "13B":
-								var marker = L.marker(b13, {
-									icon: divIcon
-								}).addTo(map);
-								break;
-							case "04C":
-								var marker = L.marker(c04, {
-									icon: divIcon
-								}).addTo(map);
-								break;
-							case "10B":
-								var marker = L.marker(b10, {
-									icon: divIcon
-								}).addTo(map);
-								break;
-							case "13A":
-								var marker = L.marker(a13, {
-									icon: divIcon
-								}).addTo(map);
-								break;
-							default:
-								var marker = L.marker(poly.getBounds().getCenter(), {
-									icon: divIcon
-								}).addTo(map);
-								break;
-						}
-						
-						
 
-					  
-					  
-					  
-					  
-					  
-											
-                      });
+                    var jefe_comuna_ = new jefe(jefes[i].COMUNAC,
+                        jefes[i].JERARQUIAC,
+                        jefes[i].LPC,
+                        jefes[i].APELLIDOC,
+                        jefes[i].NOMBRESC,
+                        jefes[i].POCC,
+                        jefes[i].PARTICULARC);
+
+
+                    var jefe_comisaria_ = new jefe(jefes[i].DEPENDENCIA1,
+                        jefes[i].JERARQUIA1,
+                        jefes[i].LP1,
+                        jefes[i].APELLIDO1,
+                        jefes[i].NOMBRES1,
+                        jefes[i].POC1,
+                        jefes[i].PARTICULAR1);
+
+                    var jefe2_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                        jefes[i].JERARQUIA2,
+                        jefes[i].LP2,
+                        jefes[i].APELLIDO2,
+                        jefes[i].NOMBRES2,
+                        jefes[i].POC2,
+                        jefes[i].PARTICULAR2);
+
+
+                    var jefe_area = jefe_area_.imprime();
+                    var jefe_comuna = jefe_comuna_.imprime();
+                    var jefe_comisaria = jefe_comisaria_.imprime();
+                    var jefe2_comisaria = jefe2_comisaria_.imprime();
+                }
+            }
+
+
+            var texto = jefe_area + "<br>" + jefe_comuna + "<br>" + jefe_comisaria + "<br>" + jefe2_comisaria;
+            poly = L.geoJSON(polygon).addTo(map).bindPopup(texto);
+
+
+
+            /*
+            //para agregar cartelito de dependencia
+             //agregar titulo de comisaria al poligono
+                var text = L.tooltip({
+                  permanent: true, 
+                  direction: 'center'    
+                }).setContent(polygon.properties["c-vecinal"]);
+                
+                text.setLatLng(poly.getBounds().getCenter());
+                map.addLayer(text);  
+            
+            
+            */
+            //para agregar como texto en fondo
+            depen_ = polygon.properties["c-vecinal"].replace('CV-', '');
+
+            var divIcon = L.divIcon({
+                className: 'polygon-label',
+                html: '<span class="etiqueta">' + depen_ + '</span>'
+            });
+
+            // Añadir marcador en el centro
+
+            b13 = [-34.54472212317285, -58.459886230124965];
+            c04 = [-34.63193387606371, -58.36326438359982];
+            b10 = [-34.62515027067575, -58.52069930995364];
+            a13 = [-34.5531270648513, -58.44728346769376];
+            switch (polygon.properties["c-vecinal"].replace('CV-', '')) {
+                case "13B":
+                    var marker = L.marker(b13, {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;
+                case "04C":
+                    var marker = L.marker(c04, {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;
+                case "10B":
+                    var marker = L.marker(b10, {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;
+                case "13A":
+                    var marker = L.marker(a13, {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;
+                default:
+                    var marker = L.marker(poly.getBounds().getCenter(), {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;
+            }
+
+
+
+
+
+
+
+
+
+        });
 
     </script>
     <script>
         punto = "";
-        function cargar_puntos(lng,lat){
-                if(punto){
-                    map.removeLayer(punto)
-                }
-                punto = L.marker([lat, lng]).addTo(map); 
-                map.flyTo(punto.getLatLng(), 16);
-      
-        }
-$(document).ready(function(){
-    $("#ubicar").click(function(){
-        var direccion = $("#direccion").val();
-        normalizarDireccionUSIG(direccion, function(lat, lng, direccionNormalizada) {
-            cargar_puntos(lng, lat);
-        });
-    });
-
-    $("#direccion").keydown(function(event){
-        if(event.which == 13){ // 13 es el código de la tecla Enter
-            $("#ubicar").click();
-        }
-    });
-});
-
-function normalizarDireccionUSIG(direccion, callback) {
-    var urlUSIG = 'https://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=' + encodeURIComponent(direccion) + '&geocodificar=TRUE';
-    fetch(urlUSIG)
-        .then(response => response.json())
-        .then(data => {
-            if(data.direccionesNormalizadas && data.direccionesNormalizadas.length > 0) {
-                var lat = parseFloat(data.direccionesNormalizadas[0].coordenadas.y);
-                var lng = parseFloat(data.direccionesNormalizadas[0].coordenadas.x);
-                callback(lat, lng, data.direccionesNormalizadas[0].direccion);
-            } else {
-                alert('Dirección no encontrada: ' + direccion);
+        function cargar_puntos(lng, lat) {
+            if (punto) {
+                map.removeLayer(punto)
             }
-        })
-        .catch(error => console.error('Error:', error));
-}	    
-</script>
+            punto = L.marker([lat, lng]).addTo(map);
+            map.flyTo(punto.getLatLng(), 16);
+
+        }
+        $(document).ready(function () {
+            $("#ubicar").click(function () {
+                var direccion = $("#direccion").val();
+                normalizarDireccionUSIG(direccion, function (lat, lng, direccionNormalizada) {
+                    cargar_puntos(lng, lat);
+                });
+            });
+
+            $("#direccion").keydown(function (event) {
+                if (event.which == 13) { // 13 es el código de la tecla Enter
+                    $("#ubicar").click();
+                }
+            });
+        });
+
+        function normalizarDireccionUSIG(direccion, callback) {
+            var urlUSIG = 'https://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=' + encodeURIComponent(direccion) + '&geocodificar=TRUE';
+            fetch(urlUSIG)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.direccionesNormalizadas && data.direccionesNormalizadas.length > 0) {
+                        var lat = parseFloat(data.direccionesNormalizadas[0].coordenadas.y);
+                        var lng = parseFloat(data.direccionesNormalizadas[0].coordenadas.x);
+                        callback(lat, lng, data.direccionesNormalizadas[0].direccion);
+                    } else {
+                        alert('Dirección no encontrada: ' + direccion);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }	    
+    </script>
 
 </body>
