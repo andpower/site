@@ -12,9 +12,12 @@
     <title>Autoridades por Comisaria Vecinal</title>
     <style>
         #map {
-            width: 100%;
-            height: 100vh;
-        }
+    width: calc(100% - 2rem); /* Ajusta el ancho para permitir el padding */
+    height: calc(100vh - 10vh - 2rem); /* Ajusta la altura para permitir el padding y la barra de título */
+    margin: 1rem; /* Añade un margen alrededor del mapa */
+    border-radius: 8px; /* Bordes redondeados para el mapa */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada para el mapa */
+}
 
         body {
             text-align: center;
@@ -36,9 +39,9 @@
     top: 0;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave como en .area_ingresos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la barra del título */
     border-bottom: 1px solid #ccc; /* Borde sutil en la parte inferior */
-}
+	}
 
         .contenedor_item_titulo {
             flex: 1;
@@ -48,7 +51,9 @@
         .contenedor_item_titulo.center {
             flex: 8;
             font-size: 24px;
-        }
+	background: rgba(255, 255, 255, 0.8); /* Ajusta el fondo si es necesario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad al título */
+}
 
         .escudos {
     max-height: 80%; /* Ajustar según sea necesario */
@@ -77,6 +82,7 @@
                 text-align: center;
                 flex-direction: column;
                 top: 0;
+		padding: 0.5rem;    
             }
 
             .contenedor_item_titulo {
@@ -88,6 +94,7 @@
                 flex: 1;
                 display: block;
                 font-size: 24px;
+		margin-bottom: 0.5rem; /* Añade un margen inferior para separar del resto de elementos */    
             }
         }
 
