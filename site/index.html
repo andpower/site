@@ -126,10 +126,20 @@
 
 
 @media screen and (max-width: 767px) {
-    .contenedor_titulo {
-        flex-direction: column;
-        padding: 10px 0; /* Aumenta el padding superior e inferior */
-    }
+        .contenedor_titulo {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            width: auto;
+            height: 10vh;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la barra del título */
+            border-bottom: 1px solid #ccc; /* Borde sutil en la parte inferior */
+       }
 
     .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
         width: 90%; /* Reduce el ancho para dispositivos móviles */
