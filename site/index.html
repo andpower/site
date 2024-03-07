@@ -7,107 +7,99 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    
     <title>Autoridades por Comisaria Vecinal</title>
     <style>
-        #map{
-            width:50%;
-            height:99%;
+        #map {
+            width: 100%;
+            height: 100vh;
         }
-		body {
-		text-align: center;
-			background: linear-gradient(to right, #87CEEB, #FFFFFF);
-						font-size: 14px;
 
-		}
-		.contenedor_titulo{
-      justify-content: center;
-			align-items: center;
-		  text-align: center;
-			display: flex;
-			width:86;
-			height: 10vh;
-			position: fixed;
-			top: 0;
+        body {
+            text-align: center;
+            background: linear-gradient(to right, #87CEEB, #FFFFFF);
+            font-size: 14px;
+        }
 
+        .contenedor_titulo {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            display: flex;
+            width: 100%;
+            height: 10vh;
+            position: fixed;
+            top: 0;
             overflow: auto;
-			z-index: 1000;
-			background: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+        }
 
-		}
-		.contenedor_item_titulo{
+        .contenedor_item_titulo {
             flex: 1;
             box-sizing: border-box;
-		}
-		.contenedor_item_titulo.center {
-            flex: 8; /* La columna central ocupa más espacio */
-			font-size: 24px;
-
         }
-		.escudos{
-			max-height:45%;
-			max-width: 45%;
-			height: auto;
-			width: auto;
-		}
-		.cuerpo{
-			margin-top: auto; /* Ajusta según la altura de contenedor_titulo */
-			margin-bottom: 15px;
-			height: auto; /* Ocupa el 90% del alto total de la ventana */
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
 
-		
-		@media screen and (max-width: 767px) {
+        .contenedor_item_titulo.center {
+            flex: 8;
+            font-size: 24px;
+        }
+
+        .escudos {
+            max-height: 45%;
+            max-width: 45%;
+            height: auto;
+            width: auto;
+        }
+
+        .cuerpo {
+            margin-top: 10vh;
+            margin-bottom: 15px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 767px) {
             .contenedor_titulo {
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-                flex-direction: column; 
-				top: 0;
-
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                top: 0;
             }
 
             .contenedor_item_titulo {
-                flex: 0; /* Las columnas extremas no ocupan espacio */
-                display: none;            
-				}
-			.contenedor_item_titulo.center {
-                flex: 1; 
-                display: block;        
-				font-size: 24px;
-				}
-		}
-		.cuerpo {
-		
-			margin-top: 10vh; 
-			margin-bottom: 15px;
-			height: 90vh; /* Ocupa el 90% del alto total de la ventana */
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center; 
-		}
-		.area_ingresos{
-				padding: 8px;
-				margin-bottom: 10px;
-				box-sizing: border-box;
-				text-align:left;
-		}
-		label{
-			width:60px;
-		}
-		.polygon-label .etiqueta {
-			  font-size: 12px;
-			  color: blue;
-			  font-weight: 900;
-		}
+                flex: 0;
+                display: none;
+            }
+
+            .contenedor_item_titulo.center {
+                flex: 1;
+                display: block;
+                font-size: 24px;
+            }
+        }
+
+        .area_ingresos {
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        label {
+            width: 60px;
+        }
+
+        .polygon-label .etiqueta {
+            font-size: 12px;
+            color: blue;
+            font-weight: 900;
+        }
 		
 		
 
