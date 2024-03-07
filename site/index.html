@@ -33,7 +33,7 @@
     align-items: center;
     text-align: center;
     display: flex;
-    width: auto%;
+    width: auto;
     height: 10vh;
     position: fixed;
     top: 0;
@@ -41,6 +41,7 @@
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la barra del título */
     border-bottom: 1px solid #ccc; /* Borde sutil en la parte inferior */
+	width: 100%; /* Corregido de 'auto%' a '100%' */
 	}
 
         .contenedor_item_titulo {
@@ -53,12 +54,13 @@
             font-size: 30px;
 	background: rgba(255, 255, 255, 0.8); /* Ajusta el fondo si es necesario */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad al título */
-}
+		margin-bottom: 0.5rem; /* Añade un margen inferior para separar del resto de elementos */
+    }
 
         .escudos {
     max-height: 45%; /* Ajustar según sea necesario */
     max-width: 45%; /* Ajustar según sea necesario */
-    height: auto;
+    height: 100;
     width: auto;
     overflow: hidden;
     border: 3px solid #ddd; /* Borde sutil */
@@ -111,10 +113,9 @@
     background: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente */
     border-radius: 8px; /* Bordes redondeados para el área de ingresos */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
-	display: flex;
-		 align-items: center; /* Alineación vertical */
-
-		 gap: 10px; /* Espacio entre el campo de texto y el botón */
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    gap: 10px; /* Espacio entre el campo de texto y el botón */
     /* Ajusta el ancho máximo y el centrado horizontal si es necesario */
 		
 		
@@ -135,13 +136,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     width: calc(100% - 22px); /* Ajuste para padding y bordes */
-	 flex: 1; /* Permite que el campo de texto ocupe el espacio disponible */
+    flex: 1; /* Permite que el campo de texto ocupe el espacio disponible */
     margin-right: 10px; /* Añade margen a la derecha del campo de texto */
 }
 
-/* Media queries para ajustar el diseño en pantallas más pequeñas */
+
 @media (max-width: 600px) {
-    .area_ingresos {
+	
+	.area_ingresos {
         flex-direction: column; /* Los elementos
 
         label {
