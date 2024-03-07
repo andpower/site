@@ -25,19 +25,20 @@
             overflow: hidden;
         }
 
-        .contenedor_titulo {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            display: flex;
-            width: 100%;
-            height: 10vh;
-            position: fixed;
-            top: 0;
-            overflow: hidden; /* Se añade overflow hidden */
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-        }
+.contenedor_titulo {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave como en .area_ingresos */
+    border-bottom: 1px solid #ccc; /* Borde sutil en la parte inferior */
+}
 
         .contenedor_item_titulo {
             flex: 1;
