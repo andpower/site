@@ -88,11 +88,40 @@
         }
 
         .area_ingresos {
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            text-align: left;
-        }
+    padding: 20px; /* Aumenta el padding para más espacio alrededor del formulario */
+    margin: 20px auto; /* Centra el área de ingresos horizontalmente y agrega margen */
+    width: 80%; /* Define un ancho para que no sea 100% de la pantalla */
+    max-width: 500px; /* Establece un ancho máximo para que no sea demasiado grande */
+    box-sizing: border-box;
+    text-align: left;
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    justify-content: space-between; /* Separa los elementos */
+    background: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente */
+    border-radius: 8px; /* Bordes redondeados para el área de ingresos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
+}
+
+.area_ingresos > div {
+    flex: 1; /* Los divs internos toman el mismo espacio */
+}
+
+#ubicar {
+    margin-left: 10px; /* Agrega un margen a la izquierda del botón */
+}
+
+/* Estilos para el input para que coincida con el diseño */
+#direccion {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 22px); /* Ajuste para padding y bordes */
+}
+
+/* Media queries para ajustar el diseño en pantallas más pequeñas */
+@media (max-width: 600px) {
+    .area_ingresos {
+        flex-direction: column; /* Los elementos
 
         label {
             width: 60px;
