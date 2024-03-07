@@ -124,19 +124,14 @@
 	<div class="cuerpo">
 
 		<div id="area_ingresos" class="area_ingresos">
-			<div>
-				<label for="calles">Calles</label>
-				<input type="text" id="calles" name="calles">
-			</div>
-			<div>
-				<label for="altura">Altura</label>
-				<input type="text" id="altura" name="altura">
-			</div>
-			<div>
-				<input type="button" id="ubicar" name="ubicar" value="Ubicar" >
-			</div>
-
-		</div>
+    <div>
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" name="direccion">
+    </div>
+    <div>
+        <input type="button" id="ubicar" name="ubicar" value="Ubicar">
+    </div>
+</div>
 		<div id="map">
 
 		</div>
@@ -320,28 +315,34 @@
         }
 $(document).ready(function(){
     $("#ubicar").click(function(){
-        var calles = $("#calles").val();
-        var altura = $("#altura").val();
-
-        var url = "https://ws.usig.buenosaires.gob.ar/rest/normalizar_y_geocodificar_direcciones?calle="+calles+"&altura="+altura+"&desambiguar=1";
-        //console.log(url);
-
-        $.post(url, function(data){
-            var x = data.GeoCodificacion.x;
-            var y = data.GeoCodificacion.y;
-            url2 = "https://ws.usig.buenosaires.gob.ar/rest//convertir_coordenadas?x="+x+"&y="+y+"&output=lonlat";
-            $.post(url2, function(data2){
-                lng = data2.resultado.x;
-                lat = data2.resultado.y;
-                cargar_puntos(lng, lat);
-            }, "json");
-        }, "json");
+        var direccion = $("#direccion").val();
+        normalizarDireccionUSIG(direccion, function(lat, lng, direccionNormalizada) {
+            cargar_puntos(lng, lat);
+        });
     });
 
-    $("#calles").keydown(function(event){
+    $("#direccion").keydown(function(event){
         if(event.which == 13){ // 13 es el código de la tecla Enter
             $("#ubicar").click();
         }
+    });
+});
+
+function normalizarDireccionUSIG(direccion, callback) {
+    var urlUSIG = 'https://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=' + encodeURIComponent(direccion) + '&geocodificar=TRUE';
+    fetch(urlUSIG)
+        .then(response => response.json())
+        .then(data => {
+            if(data.direccionesNormalizadas && data.direccionesNormalizadas.length > 0) {
+                var lat = parseFloat(data.direccionesNormalizadas[0].coordenadas.y);
+                var lng = parseFloat(data.direccionesNormalizadas[0].coordenadas.x);
+                callback(lat, lng, data.direccionesNormalizadas[0].direccion);
+            } else {
+                alert('Dirección no encontrada: ' + direccion);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
     });
 });	    
 </script>
