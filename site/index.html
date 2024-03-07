@@ -145,10 +145,14 @@
             }
 
 
-            @media screen and (max-width: 600px) {
-    .contenedor_titulo {
+@media screen and (max-width: 767px) {
+    .contenedor_titulo, .area_ingresos, .contenedor_item_titulo, .escudos {
+        /* Esta regla aplica estilos para pantallas menores a 767px de ancho */
         flex-direction: column;
-        padding: 10px 0; /* Aumenta el padding superior e inferior */
+        align-items: center;
+        text-align: center;
+        margin: 10px 0;
+        width: auto;
     }
 
     .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
@@ -160,18 +164,17 @@
         flex-direction: column; /* Apila los elementos verticalmente */
         gap: 10px; /* Añade espacio entre los campos */
         width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
+	padding: 5px;    
     }
 
     #direccion, #ubicar {
-        width: 100%; /* Hace que el campo de texto y el botón ocupen el ancho completo */
-        margin: 0; /* Elimina los márgenes */
+        width: calc(100% - 20px); /* 20px para tener en cuenta el padding */
+        margin: 5px 0; /* Añade margen arriba y abajo */
     }
-
     #map {
-        height: calc(100vh - (10vh + 2rem + altura total de .contenedor_titulo)); /* Ajusta la altura del mapa */
+        height: calc(100vh - (10vh + altura de otros elementos + padding/margen adicional));
     }
 }
-
         .polygon-label .etiqueta {
             font-size: 12px;
             color: blue;
