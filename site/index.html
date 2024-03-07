@@ -318,42 +318,32 @@
                 map.flyTo(punto.getLatLng(), 16);
       
         }
-        $(document).ready(function(){
-            $("#ubicar").click(function(){
-                var calles = $("#calles").val();
-                var altura = $("#altura").val();
+$(document).ready(function(){
+    $("#ubicar").click(function(){
+        var calles = $("#calles").val();
+        var altura = $("#altura").val();
 
-                var url = "https://ws.usig.buenosaires.gob.ar/rest/normalizar_y_geocodificar_direcciones?calle="+calles+"&altura="+altura+"&desambiguar=1";
-                //console.log(url);
+        var url = "https://ws.usig.buenosaires.gob.ar/rest/normalizar_y_geocodificar_direcciones?calle="+calles+"&altura="+altura+"&desambiguar=1";
+        //console.log(url);
 
-                $.post(url, function(data){
-                    var x = data.GeoCodificacion.x;
-                    var y = data.GeoCodificacion.y;
-                    url2 = "https://ws.usig.buenosaires.gob.ar/rest//convertir_coordenadas?x="+x+"&y="+y+"&output=lonlat";
-                    $.post(url2, function(data2){
-                        lng = data2.resultado.x;
-                        lat = data2.resultado.y;
-                        cargar_puntos(lng, lat);
+        $.post(url, function(data){
+            var x = data.GeoCodificacion.x;
+            var y = data.GeoCodificacion.y;
+            url2 = "https://ws.usig.buenosaires.gob.ar/rest//convertir_coordenadas?x="+x+"&y="+y+"&output=lonlat";
+            $.post(url2, function(data2){
+                lng = data2.resultado.x;
+                lat = data2.resultado.y;
+                cargar_puntos(lng, lat);
+            }, "json");
+        }, "json");
+    });
 
-
-
-
-                    }, "json");
-
-
-
-                }, "json");
-            });
-        });
-</script>
-<script>
-    $(document).ready(function(){
-        $("#calles").keypress(function(event){
-            if(event.which == 13){ // 13 es el código de la tecla Enter
-                $("#ubicar").click();
-            }
-        });
-    });	    
+    $("#calles").keypress(function(event){
+        if(event.which == 13){ // 13 es el código de la tecla Enter
+            $("#ubicar").click();
+        }
+    });
+});	    
 </script>
 
 </body>
