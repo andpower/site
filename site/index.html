@@ -126,31 +126,33 @@
 
 
 @media screen and (max-width: 767px) {
-    .contenedor_titulo, .area_ingresos, .contenedor_item_titulo, .escudos {
-        /* Esta regla aplica estilos para pantallas menores a 767px de ancho */
+    .contenedor_titulo {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin: 10px 0;
-        width: auto;
+        padding: 10px 0; /* Aumenta el padding superior e inferior */
     }
 
     .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
-        width: 60%; /* Reduce el ancho para dispositivos móviles */
+        width: 90%; /* Reduce el ancho para dispositivos móviles */
+        margin: 10px auto; /* Añade margen arriba y abajo y centra horizontalmente */
+    }
+
+    .contenedor_item_titulo.center {
+        font-size: 20px; /* Reduce el tamaño de la fuente para el título en dispositivos móviles */
+    }
 
     .area_ingresos {
         flex-direction: column; /* Apila los elementos verticalmente */
         gap: 10px; /* Añade espacio entre los campos */
         width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
-	padding: 5px;    
     }
 
     #direccion, #ubicar {
-        width: calc(100% - 20px); /* 20px para tener en cuenta el padding */
-        margin: 5px 0; /* Añade margen arriba y abajo */
+        width: 100%; /* Hace que el campo de texto y el botón ocupen el ancho completo */
+        margin: 5px 0; /* Elimina los márgenes laterales */
     }
+
     #map {
-        height: calc(100vh - (10vh + altura de otros elementos + padding/margen adicional));
+        height: calc(100vh - (altura total de .contenedor_titulo + altura de .area_ingresos + margen adicional));
     }
 }
         .polygon-label .etiqueta {
