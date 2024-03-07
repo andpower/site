@@ -34,9 +34,10 @@
             align-items: center;
             text-align: center;
             display: flex;
-            width: auto;
-            height: auto;
-            position: center;
+            width: 99%;
+            height: 10vh;
+            position: fixed;
+            overflow: auto;		
             top: 0;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
@@ -50,7 +51,7 @@
         }
 
         .contenedor_item_titulo.center {
-            flex: 6;
+            flex: 8;
             font-size: 24px;
             background: rgba(255, 255, 255, 0.8);  /* Ajusta el fondo si es necesario */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad al título */
@@ -69,7 +70,7 @@
         }
 
         .cuerpo {
-            margin-top: 40%;
+            margin-top: 10vh;
             height: calc(90vh - 10vh); /* Ajustado para restar la altura del contenedor_titulo */
             display: flex;
             flex-direction: column;
