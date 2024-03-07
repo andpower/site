@@ -1,37 +1,355 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>NGINX on Railway</title>
-    <meta name="description" content="Choo Choo!" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/styles.css?v=1.0" />
-  </head>
 
-  <body>
-    <main>
-      <img
-        src="https://railway.app/brand/logo-light.svg"
-        alt="Railway logo"
-        class="logo"
-      />
+    <title>Autoridades por Comisaria Vecinal</title>
+    <style>
+        #map{
+            width:99%;
+            height:90%;
+        }
+		body {
+		text-align: center;
+			background: linear-gradient(to right, #87CEEB, #FFFFFF);
+						font-size: 14px;
 
-      <h1>NGINX on Railway</h1>
+		}
+		.contenedor_titulo{
+      justify-content: center;
+			align-items: center;
+		  text-align: center;
+			display: flex;
+			width:99%;
+			height: 10vh;
+			position: fixed;
+			top: 0;
 
-      <p>
-        Choo Choo! This is an example of an NGINX static site running on
-        Railway.
-        <a
-          href="https://github.com/railwayapp/starters/tree/master/examples/nginx"
-          >View source</a
-        >.
-      </p>
-    </main>
+            overflow: auto;
+			z-index: 1000;
+			background: rgba(255, 255, 255, 0.9);
 
-    <script src="/script.js"></script>
-  </body>
-</html>
+		}
+		.contenedor_item_titulo{
+            flex: 1;
+            box-sizing: border-box;
+		}
+		.contenedor_item_titulo.center {
+            flex: 8; /* La columna central ocupa más espacio */
+			font-size: 24px;
+
+        }
+		.escudos{
+			max-height:45%;
+			max-width: 45%;
+			height: auto;
+			width: auto;
+		}
+		.cuerpo{
+			margin-top: 10vh; /* Ajusta según la altura de contenedor_titulo */
+			margin-bottom: 15px;
+			height: 90vh; /* Ocupa el 90% del alto total de la ventana */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		
+		@media screen and (max-width: 767px) {
+            .contenedor_titulo {
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+                flex-direction: column; 
+				top: 0;
+
+            }
+
+            .contenedor_item_titulo {
+                flex: 0; /* Las columnas extremas no ocupan espacio */
+                display: none;            
+				}
+			.contenedor_item_titulo.center {
+                flex: 1; 
+                display: block;        
+				font-size: 24px;
+				}
+		}
+		.cuerpo {
+		
+			margin-top: 10vh; 
+			margin-bottom: 15px;
+			height: 90vh; /* Ocupa el 90% del alto total de la ventana */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center; 
+		}
+		.area_ingresos{
+				padding: 8px;
+				margin-bottom: 10px;
+				box-sizing: border-box;
+				text-align:left;
+		}
+		label{
+			width:60px;
+		}
+		.polygon-label .etiqueta {
+			  font-size: 12px;
+			  color: blue;
+			  font-weight: 900;
+		}
+		
+		
+
+    </style>
+
+
+</head>
+<body>
+
+	<div class = "contenedor_titulo">
+		<div class = "contenedor_item_titulo">    <img src="./imagenes/ciudad.gif" class="escudos">
+		</div>
+		<div class = "contenedor_item_titulo center">División Análisis Estadistico e Investigación Criminal
+		</div>
+		<div class = "contenedor_item_titulo"><img src="./imagenes/subjefatura.gif" class="escudos">
+		</div>
+	</div>
+
+	<div class="cuerpo">
+
+		<div id="area_ingresos" class="area_ingresos">
+			<div>
+				<label for="calles">Calles</label>
+				<input type="text" id="calles" name="calles">
+			</div>
+			<div>
+				<label for="altura">Altura</label>
+				<input type="text" id="altura" name="altura">
+			</div>
+			<div>
+				<input type="button" id="ubicar" name="ubicar" value="Ubicar" >
+			</div>
+
+		</div>
+		<div id="map">
+
+		</div>
+	</div>
+
+	
+	
+    <script src="jefes.js">
+	
+	</script>
+	<script src="poligonos.js">
+	
+ 
+
+	</script>
+
+
+<script>
+	class jefe{
+		constructor(dependencia, jerarquia ,lp,apellido, nombre, poc, tel_part){
+		
+			this.dependencia = dependencia;
+			this.jerarquia = jerarquia;
+			this.lp = lp;
+			this.apellido = apellido;
+			this.nombre = nombre;
+			this.poc = poc;
+			this.tel_part = tel_part;
+		}
+		
+		imprime(){
+			return "Dependencia: "+this.dependencia+"<br>Jefe: "+ this.jerarquia +" "+ this.lp +"<br>"+ this.apellido+" "+ this.nombre+" "+ "<a href='tel:+"+this.poc+"'><br>Poc: "+this.poc+"</a><br>"+"<a href='tel:+"+this.tel_part+"'>Tel. Particular: "+this.tel_part+"</a><br>";
+		}
+	}
+</script>
+
+    <script>
+
+
+
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+            var map = L.map('map').setView([-34.61510469805309, -58.453305816757414], 12).addLayer(osm);
+			
+
+            poligonos.forEach(polygon => {
+			
+                      
+											for (var i = 0; i < jefes.length; i++) {
+											  if (jefes[i].DEPENDENCIA2 === polygon.properties["c-vecinal"]) {
+												
+												registro = (jefes[i]);
+												//console.log(registro);
+												var texto = polygon.properties["c-vecinal"]+"<br>"+polygon.properties["c-comunal"];
+												var comisaria_vecinal = polygon.properties["c-vecinal"]+"<br>";
+
+												var jefe_area_ = new jefe(jefes[i].AREAA,  
+                                                  jefes[i].JERARQUIAA ,
+                                                  jefes[i].LPA,
+                                                  jefes[i].APELLIDOA, 
+                                                  jefes[i].NOMBRESA, 
+                                                  jefes[i].POCA, 
+                                                  jefes[i].PARTICULARA);
+
+
+												var jefe_comuna_ = new jefe(jefes[i].COMUNAC,  
+                                                    jefes[i].JERARQUIAC ,
+                                                    jefes[i].LPC,
+                                                    jefes[i].APELLIDOC, 
+                                                    jefes[i].NOMBRESC, 
+                                                    jefes[i].POCC, 
+                                                    jefes[i].PARTICULARC);
+
+
+												var jefe_comisaria_ = new jefe(jefes[i].DEPENDENCIA1,  
+                                                      jefes[i].JERARQUIA1 ,
+                                                      jefes[i].LP1,
+                                                      jefes[i].APELLIDO1, 
+                                                      jefes[i].NOMBRES1, 
+                                                      jefes[i].POC1, 
+                                                      jefes[i].PARTICULAR1);
+
+                        var jefe2_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,  
+                                                      jefes[i].JERARQUIA2 ,
+                                                      jefes[i].LP2,
+                                                      jefes[i].APELLIDO2, 
+                                                      jefes[i].NOMBRES2, 
+                                                      jefes[i].POC2, 
+                                                      jefes[i].PARTICULAR2);
+
+												
+												var jefe_area = jefe_area_.imprime();
+												var jefe_comuna = jefe_comuna_.imprime();
+												var jefe_comisaria = jefe_comisaria_.imprime();
+                        var jefe2_comisaria = jefe2_comisaria_.imprime();
+											  }
+											}
+			
+											
+											var texto = jefe_area+"<br>"+jefe_comuna+"<br>"+jefe_comisaria+"<br>"+jefe2_comisaria;
+                       poly = L.geoJSON(polygon).addTo(map).bindPopup(texto);
+					  
+					  
+					  
+					  /*
+					  //para agregar cartelito de dependencia
+					   //agregar titulo de comisaria al poligono
+						  var text = L.tooltip({
+							permanent: true, 
+							direction: 'center'    
+						  }).setContent(polygon.properties["c-vecinal"]);
+						  
+						  text.setLatLng(poly.getBounds().getCenter());
+						  map.addLayer(text);  
+					  
+					  
+					  */
+					  //para agregar como texto en fondo
+					  	depen_ = polygon.properties["c-vecinal"].replace('CV-', '');
+						
+						var divIcon = L.divIcon({
+							className: 'polygon-label', 
+							html: '<span class="etiqueta">'+depen_+'</span>'
+						  });
+
+						  // Añadir marcador en el centro
+						
+						b13 = [-34.54472212317285, -58.459886230124965];
+						c04 = [-34.63193387606371, -58.36326438359982];
+						b10 = [-34.62515027067575, -58.52069930995364];
+						a13 = [-34.5531270648513, -58.44728346769376];
+						switch(polygon.properties["c-vecinal"].replace('CV-', '')){
+							case "13B":
+								var marker = L.marker(b13, {
+									icon: divIcon
+								}).addTo(map);
+								break;
+							case "04C":
+								var marker = L.marker(c04, {
+									icon: divIcon
+								}).addTo(map);
+								break;
+							case "10B":
+								var marker = L.marker(b10, {
+									icon: divIcon
+								}).addTo(map);
+								break;
+							case "13A":
+								var marker = L.marker(a13, {
+									icon: divIcon
+								}).addTo(map);
+								break;
+							default:
+								var marker = L.marker(poly.getBounds().getCenter(), {
+									icon: divIcon
+								}).addTo(map);
+								break;
+						}
+						
+						
+
+					  
+					  
+					  
+					  
+					  
+											
+                      });
+
+    </script>
+    <script>
+        punto = "";
+        function cargar_puntos(lng,lat){
+                if(punto){
+                    map.removeLayer(punto)
+                }
+                punto = L.marker([lat, lng]).addTo(map); 
+                map.flyTo(punto.getLatLng(), 16);
+      
+        }
+        $(document).ready(function(){
+            $("#ubicar").click(function(){
+                var calles = $("#calles").val();
+                var altura = $("#altura").val();
+
+                var url = "https://ws.usig.buenosaires.gob.ar/rest/normalizar_y_geocodificar_direcciones?calle="+calles+"&altura="+altura+"&desambiguar=1";
+                //console.log(url);
+
+                $.post(url, function(data){
+                    var x = data.GeoCodificacion.x;
+                    var y = data.GeoCodificacion.y;
+                    url2 = "https://ws.usig.buenosaires.gob.ar/rest//convertir_coordenadas?x="+x+"&y="+y+"&output=lonlat";
+                    $.post(url2, function(data2){
+                        lng = data2.resultado.x;
+                        lat = data2.resultado.y;
+                        cargar_puntos(lng, lat);
+
+
+
+
+                    }, "json");
+
+
+
+                }, "json");
+            });
+        });
+    </script>
+
+</body>
