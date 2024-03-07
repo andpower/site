@@ -39,7 +39,7 @@
             align-items: center;
             text-align: center;
             display: flex;
-            width: 100%;
+            width: 99%;
             height: 10vh;
             position: fixed;
             overflow: auto;
@@ -73,9 +73,9 @@
             /* Ajustar según sea necesario */
             max-width: 40%;
             /* Ajustar según sea necesario */
-            height: 100%;
+            height: auto;
             width: auto;
-            overflow: hidden;
+            overflow: auto;
             border: 3px solid #ddd;
             /* Borde sutil */
             border-radius: 90%;
@@ -134,62 +134,79 @@
                 /* Permite que el campo de texto ocupe el espacio disponible */
                 margin-right: 10px;
                 /* Añade margen a la derecha del campo de texto */
-            }}
-
-
-@media screen and (max-width: 767px) {
-    /* Ajustes para la barra de título */
-    .contenedor_titulo {
-        flex-direction: column;
-        padding: 5px 0; /* Reduce el padding superior e inferior */
-        align-items: center;
-        justify-content: center;
-        height: auto; /* Altura automática para adaptarse al contenido */
-    }
-
-    /* Ajustes para los elementos del título */
-    .contenedor_item_titulo img.escudos, .contenedor_item_titulo.center {
-        margin: 5px auto; /* Menos margen para más espacio */
-        width: 100%; /* Ancho automático para adaptarse al contenido */
-        max-width: 60%; /* Evita que sea demasiado grande */
-        height: auto; /* Altura automática para mantener la proporción */
-    }
-
-    .contenedor_item_titulo.center {
-        font-size: 16px; /* Fuente más grande para mejor legibilidad */
-        margin: 5px 0; /* Espaciado vertical para separar del logo */
-    }
-
-    /* Ajustes para la zona de entrada */
-    .area_ingresos {
-        flex-direction: column; /* Elementos en columna */
-        gap: 5px; /* Menos espacio entre elementos */
-        padding: 5px; /* Menos padding para aprovechar el espacio */
-        width: 95%; /* Más ancho para maximizar el espacio disponible */
-        max-width: none; /* Sin restricción de ancho máximo */
-    }
-
-    .area_ingresos > div {
-        width: 100%; /* Los hijos ocupan todo el ancho disponible */
-    }
-
-    #ubicar {
-        width: auto; /* Ancho automático */
-        margin-top: 5px; /* Margen superior para no pegarse al input */
-    }
-
-            #map {
-                height: calc(100vh - 20vh); /* Ajustado para el nuevo layout */
             }
-        }
 
-.polygon-label .etiqueta {
-    font-size: 12px;
-    color: blue;
-    font-weight: 900;
-}
-		
-		
+
+    @media screen and (max-width: 767px) {
+
+                /* Ajustes para la barra de título */
+                .contenedor_titulo {
+                    flex-direction: column;
+                    padding: 5px 0;
+                    /* Reduce el padding superior e inferior */
+                    align-items: center;
+                    justify-content: center;
+                    height: auto;
+                    /* Altura automática para adaptarse al contenido */
+                }
+
+                /* Ajustes para los elementos del título */
+                .contenedor_item_titulo img.escudos,
+                .contenedor_item_titulo.center {
+                    margin: 5px auto;
+                    /* Menos margen para más espacio */
+                    width: 100%;
+                    /* Ancho automático para adaptarse al contenido */
+                    max-width: 60%;
+                    /* Evita que sea demasiado grande */
+                    height: auto;
+                    /* Altura automática para mantener la proporción */
+                }
+
+                .contenedor_item_titulo.center {
+                    font-size: 16px;
+                    /* Fuente más grande para mejor legibilidad */
+                    margin: 5px 0;
+                    /* Espaciado vertical para separar del logo */
+                }
+
+                /* Ajustes para la zona de entrada */
+                .area_ingresos {
+                    flex-direction: column;
+                    /* Elementos en columna */
+                    gap: 5px;
+                    /* Menos espacio entre elementos */
+                    padding: 5px;
+                    /* Menos padding para aprovechar el espacio */
+                    width: 95%;
+                    /* Más ancho para maximizar el espacio disponible */
+                    max-width: none;
+                    /* Sin restricción de ancho máximo */
+                }
+
+                .area_ingresos>div {
+                    width: 100%;
+                    /* Los hijos ocupan todo el ancho disponible */
+                }
+
+                #ubicar {
+                    width: auto;
+                    /* Ancho automático */
+                    margin-top: 5px;
+                    /* Margen superior para no pegarse al input */
+                }
+
+                #map {
+                    height: calc(100vh - 20vh);
+                    /* Ajustado para el nuevo layout */
+                }
+            }
+
+            .polygon-label .etiqueta {
+                font-size: 12px;
+                color: blue;
+                font-weight: 900;
+            }
     </style>
 
 
