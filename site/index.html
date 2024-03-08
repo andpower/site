@@ -219,7 +219,7 @@
         </div>
         <div class="contenedor_item_titulo center">División Análisis Estadistico e Investigación Criminal
         </div>
-        <div class="contenedor_item_titulo"><img src="./subjefatura.gif" class="escudos">
+        <div class="contenedor_item_titulo"><img src="./ciudad.gif" class="escudos">
         </div>
     </div>
 
@@ -354,10 +354,10 @@
             */
             //para agregar como texto en fondo
             depen_ = polygon.properties["c-vecinal"].replace('CV-', '');
-
+                style = "font-size: 12px; color: blue; font-weight: 900;";
             var divIcon = L.divIcon({
                 className: 'polygon-label',
-                html: '<span class="etiqueta">' + depen_ + '</span>'
+                html: '<span class="etiqueta" style="'+style+'">' + depen_ + '</span>'
             });
 
             // Añadir marcador en el centro
