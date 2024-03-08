@@ -34,7 +34,7 @@
             align-items: center;
             text-align: center;
             display: flex;
-            width: 40% - 2rem;
+            width: calc(100% - 2rem);
             height: 12vh;
             position: fixed;
             overflow: auto;
@@ -42,7 +42,9 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);            /* Sombra para la barra del título */
-            border-bottom: 0.3px solid           /* Borde sutil en la parte inferior */
+            border-bottom: 0.3px solid    
+            /*width: calc(100% - 2rem);
+            /* Borde sutil en la parte inferior */
         }
 
         .contenedor_item_titulo {
