@@ -13,22 +13,17 @@
     <title>Autoridades por Comisaria Vecinal</title>
     <style>
         #map {
-            width: calc(100% - 2rem);
-            /* Ajusta el ancho para permitir el padding */
-            height: calc(95vh - 10vh - 4rem);
-            /* Ajusta la altura para permitir el padding y la barra de título */
-            margin: 0.5rem;
-            /* Añade un margen alrededor del mapa */
-            border-radius: 8px;
-            /* Bordes redondeados para el mapa */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            /* Sombra más pronunciada para el mapa */
+            width: calc(100% - 2rem);            /* Ajusta el ancho para permitir el padding */
+            height: calc(80vh - 5vh - 3rem);            /* Ajusta la altura para permitir el padding y la barra de título */
+            margin: 0.5rem;             /* Añade un margen alrededor del mapa */
+            border-radius: 9px;            /* Bordes redondeados para el mapa */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);             /* Sombra más pronunciada para el mapa */
         }
 
         body {
             text-align: right;
             background: linear-gradient(to right, #87CEEB, #FFFFFF);
-            font-size: 13px;
+            font-size: 12px;
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -39,16 +34,16 @@
             align-items: center;
             text-align: center;
             display: flex;
-            width: 100%;
-            height: 10vh;
+            width: calc(100% - 2rem);
+            height: 12vh;
             position: fixed;
             overflow: auto;
             top: 0;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Sombra para la barra del título */
-            border-bottom: 0.3px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);            /* Sombra para la barra del título */
+            border-bottom: 0.3px solid    
+            /*width: calc(100% - 2rem);
             /* Borde sutil en la parte inferior */
         }
 
@@ -60,12 +55,9 @@
         .contenedor_item_titulo.center {
             flex: 8;
             font-size: 24px;
-            background: rgba(255, 255, 255, 0.8);
-            /* Ajusta el fondo si es necesario */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Sombra para dar profundidad al título */
-            margin-bottom: 1rem;
-            /* Añade un margen inferior para separar del resto de elementos */
+            background: rgba(255, 255, 255, 0.8);            /* Ajusta el fondo si es necesario */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);            /* Sombra para dar profundidad al título */
+            margin-bottom: 1rem;            /* Añade un margen inferior para separar del resto de elementos */
         }
 
         .escudos {
@@ -76,17 +68,16 @@
             height: auto;
             width: auto;
             overflow: auto;
-            border: 3px solid #ddd;
-            /* Borde sutil */
-            border-radius: 40%;
+            border: 3px solid #ddd;            /* Borde sutil */
+            border-radius: 9%;
             /* Hace los escudos redondos */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             /* Sombra para dar profundidad */
         }
 
         .cuerpo {
-            margin-top: 12vh;
-            height: 88vh;
+            margin-top: 110vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,34 +85,27 @@
         }
 
         .area_ingresos {
-            padding: 10px;
-            /* Aumenta el padding para más espacio alrededor del formulario */
-            margin: 0 auto;
-            /* Centra el área de ingresos horizontalmente y agrega margen */
-            width: 80%;
-            /* Define un ancho para que no sea 100% de la pantalla */
-            max-width: 500px;
-            /* Establece un ancho máximo para que no sea demasiado grande */
+            padding: 10px;            /* Aumenta el padding para más espacio alrededor del formulario */
+            margin: 0 auto;            /* Centra el área de ingresos horizontalmente y agrega margen */
+            width: 80%;            /* Define un ancho para que no sea 100% de la pantalla */
+            max-width: 500px;            /* Establece un ancho máximo para que no sea demasiado grande */
             box-sizing: border-box;
             text-align: center;
-            display: flex;
-            /* Utiliza flexbox para alinear los elementos */
-            align-items:  center;
-            /* Centra los elementos verticalmente */
+            display: flex;            /* Utiliza flexbox para alinear los elementos */
+            align-items:  center;            /* Centra los elementos verticalmente */
             justify-content: content-distribution;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
-            */ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            
+         }
 
-        .area_ingresos>div {
-            flex: 1;
-            /* Los divs internos toman el mismo espacio */
-        }
+       .area_ingresos>div {
+            flex: 1;            * Los divs internos toman el mismo espacio */
+         }
 
         #ubicar {
-            white-space: nowrap;
-            /* Evita que el texto del botón se divida en varias líneas */
+            white-space: nowrap;            /* Evita que el texto del botón se divida en varias líneas */
             padding: 10px 20px;
 
             #direccion {
@@ -197,7 +181,7 @@
                 }
 
                 #map {
-                    height: calc(100vh - 20vh);
+                    height: calc(96vh - 20vh);
                     /* Ajustado para el nuevo layout */
                 }
             }
