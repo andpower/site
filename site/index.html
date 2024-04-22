@@ -136,6 +136,10 @@
                 /* Añade margen a la derecha del campo de texto */
         }
 
+		.leaflet-popup-content-wrapper{
+				max-height: 300px;
+				overflow-y: scroll;
+		}
 
     @media screen and (max-width: 767px) {
 
@@ -277,7 +281,9 @@
             }
 
             imprime() {
-                return "Dependencia: " + this.dependencia + "<br>Jefe: " + this.jerarquia + " " + this.lp + "<br>" + this.apellido + " " + this.nombre + " " + "<a href='tel:+" + this.poc + "'><br>Poc: " + this.poc + "</a><br>" + "<a href='tel:+" + this.tel_part + "'>Tel. Particular: " + this.tel_part + "</a><br>";
+
+                var cadena = (this.lp != null)?"Dependencia: " + this.dependencia + "<br>Jefe: <b>" + this.jerarquia + "</b> " + this.lp + "<br>" + this.apellido + " " + this.nombre + " " + "<a href='tel:+" + this.poc + "'><br>Poc: " + this.poc + "</a><br>" + "<a href='tel:+" + this.tel_part + "'>Tel. Particular: " + this.tel_part + "</a><br>": ""; 
+                return cadena;
             }
         }
     </script>
@@ -337,16 +343,37 @@
                         jefes[i].POC2,
                         jefes[i].PARTICULAR2);
 
+                        var jefe3_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                        jefes[i].JERARQUIA5,
+                        jefes[i].LP5,
+                        jefes[i].APELLIDO5,
+                        jefes[i].NOMBRES5,
+                        jefes[i].POC5,
+                        jefes[i].PARTICULAR5);
+                    
+                    var jefe4_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                        jefes[i].JERARQUIA6,
+                        jefes[i].LP6,
+                        jefes[i].APELLIDO6,
+                        jefes[i].NOMBRES6,
+                        jefes[i].POC6,
+                        jefes[i].PARTICULAR6);
 
                     var jefe_area = jefe_area_.imprime();
                     var jefe_comuna = jefe_comuna_.imprime();
                     var jefe_comisaria = jefe_comisaria_.imprime();
                     var jefe2_comisaria = jefe2_comisaria_.imprime();
+                    var jefe3_comisaria = jefe3_comisaria_.imprime();
+                    var jefe4_comisaria = jefe4_comisaria_.imprime();
+                    var jefeservicio = "Jefe de Servicio: " + "<a href='tel:+" + jefes[i].JEFESERVICIOPOC + "'><br>Poc: " + jefes[i].JEFESERVICIOPOC + "</a><br>";
+
                 }
             }
 
 
-            var texto = jefe_area + "<br>" + jefe_comuna + "<br>" + jefe_comisaria + "<br>" + jefe2_comisaria;
+            
+
+            var texto = jefe_area + "<br>" + jefe_comuna + "<br>" + jefe_comisaria + "<br>" + jefe2_comisaria + "<br>" +jefe3_comisaria+"<br>"+ jefe4_comisaria+"<br>"+jefeservicio;
             poly = L.geoJSON(polygon).addTo(map).bindPopup(texto);
 
 
@@ -379,6 +406,7 @@
             c04 = [-34.63193387606371, -58.36326438359982];
             b10 = [-34.62515027067575, -58.52069930995364];
             a13 = [-34.5531270648513, -58.44728346769376];
+            a02 = [-34.582012071405856, -58.39378650006967];
             switch (polygon.properties["c-vecinal"].replace('CV-', '')) {
                 case "13B":
                     var marker = L.marker(b13, {
@@ -400,6 +428,11 @@
                         icon: divIcon
                     }).addTo(map);
                     break;
+                case "02A":
+                    var marker = L.marker(a02, {
+                        icon: divIcon
+                    }).addTo(map);
+                    break;                    
                 default:
                     var marker = L.marker(poly.getBounds().getCenter(), {
                         icon: divIcon
