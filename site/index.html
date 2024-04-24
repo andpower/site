@@ -344,20 +344,36 @@
                         jefes[i].PARTICULAR2);
 
                         var jefe3_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                        jefes[i].JERARQUIA3,
+                        jefes[i].LP3,
+                        jefes[i].APELLIDO3,
+                        jefes[i].NOMBRES3,
+                        jefes[i].POC3,
+                        jefes[i].PARTICULAR3);
+                    
+                    var jefe4_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                        jefes[i].JERARQUIA4,
+                        jefes[i].LP4,
+                        jefes[i].APELLIDO4,
+                        jefes[i].NOMBRES4,
+                        jefes[i].POC4,
+                        jefes[i].PARTICULAR4);
+						
+                    var jefe5_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
                         jefes[i].JERARQUIA5,
                         jefes[i].LP5,
                         jefes[i].APELLIDO5,
                         jefes[i].NOMBRES5,
                         jefes[i].POC5,
                         jefes[i].PARTICULAR5);
-                    
-                    var jefe4_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
+                    var jefe6_comisaria_ = new jefe(jefes[i].DEPENDENCIA2,
                         jefes[i].JERARQUIA6,
                         jefes[i].LP6,
                         jefes[i].APELLIDO6,
                         jefes[i].NOMBRES6,
                         jefes[i].POC6,
-                        jefes[i].PARTICULAR6);
+                        jefes[i].PARTICULAR6);						
+						
 
                     var jefe_area = jefe_area_.imprime();
                     var jefe_comuna = jefe_comuna_.imprime();
@@ -365,6 +381,9 @@
                     var jefe2_comisaria = jefe2_comisaria_.imprime();
                     var jefe3_comisaria = jefe3_comisaria_.imprime();
                     var jefe4_comisaria = jefe4_comisaria_.imprime();
+                    var jefe5_comisaria = jefe5_comisaria_.imprime();
+                    var jefe6_comisaria = jefe6_comisaria_.imprime();
+
                     var jefeservicio = "Jefe de Servicio: " + "<a href='tel:+" + jefes[i].JEFESERVICIOPOC + "'><br>Poc: " + jefes[i].JEFESERVICIOPOC + "</a><br>";
 
                 }
@@ -373,7 +392,7 @@
 
             
 
-            var texto = jefe_area + "<br>" + jefe_comuna + "<br>" + jefe_comisaria + "<br>" + jefe2_comisaria + "<br>" +jefe3_comisaria+"<br>"+ jefe4_comisaria+"<br>"+jefeservicio;
+            var texto = jefe_area + "<br>" + jefe_comuna + "<br>" + jefe_comisaria + "<br>" + jefe2_comisaria + "<br>" +jefe3_comisaria+"<br>"+ jefe4_comisaria+"<br>"+ jefe5_comisaria+"<br>"+ jefe6_comisaria+"<br>"+jefeservicio;
             poly = L.geoJSON(polygon).addTo(map).bindPopup(texto);
 
 
