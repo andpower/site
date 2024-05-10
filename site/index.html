@@ -282,7 +282,7 @@
 
             imprime() {
 
-                var cadena = (this.lp != null)?"Dependencia: " + this.dependencia + "<br>Jefe: <b>" + this.jerarquia + "</b> " + this.lp + "<br>" + this.apellido + " " + this.nombre + " " + "<a href='tel:+" + this.poc + "'><br>Poc: " + this.poc + "</a><br>" + "<a href='tel:+" + this.tel_part + "'>Tel. Particular: " + this.tel_part + "</a><br>": ""; 
+                var cadena = (this.lp != null)?"Dependencia: " + this.dependencia + "<br>Jefe: <b>" + this.jerarquia + "</b> " + this.lp + "<br>" + this.apellido + " " + this.nombre + " " + "<a href='tel://" + this.poc + "'><br>Poc: " + this.poc + "</a><br>" + "<a href='tel://" + this.tel_part + "'>Tel. Particular: " + this.tel_part + "</a><br>": ""; 
                 return cadena;
             }
         }
