@@ -511,5 +511,23 @@
                 .catch(error => console.error('Error:', error));
         }	    
     </script>
+	
+	<script>
+		$(document).ready(function(){
+		    const urlParams = new URLSearchParams(window.location.search);
+
+            // Leer los valores de los parámetros
+            const longitud = urlParams.get('longitud');
+            const latitud = urlParams.get('latitud');
+			
+            // Ejecutar una función con los parámetros
+			if(longitud<-58 && latitud <-34){
+				cargar_puntos(longitud, latitud);			
+			}
+
+			
+		});
+
+	</script>
 
 </body>
